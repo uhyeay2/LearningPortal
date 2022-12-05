@@ -1,0 +1,53 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor _httpContextAccessor
+@inject HttpClient Http
+
+@if (User?.Identity?.Name != null)
+{
+    <img src="@Avatar" />
+
+    <b>You are logged in as: @GivenName @Surname</b>
+
+    <a class="ml-md-auto btn btn-primary" href="/Logout" target="_top">Logout</a>
+}
+else
+{
+    <a class="ml-md-auto btn btn-primary" href="/Login" target="_top">Sign In With Google</a>
+}
+@code {
+
+    private ClaimsPrincipal? User;
+
+    private string GivenName = string.Empty;   
+
+    private string Surname = string.Empty;
+
+    private string Avatar = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        try
+        {
+            // Set the user to determine if they are logged in
+            User = _httpContextAccessor?.HttpContext?.User;
+
+            // Try to get the GivenName
+            var givenName = _httpContextAccessor?.HttpContext?.User.FindFirst(ClaimTypes.GivenName);
+
+            GivenName = givenName != null ? givenName.Value : User?.Identity?.Name ?? string.Empty;
+
+            // Try to get the Surname
+            var surname = _httpContextAccessor?.HttpContext?.User.FindFirst(ClaimTypes.Surname);
+
+            Surname = surname != null ? surname.Value : string.Empty;
+
+            // Try to get Avatar
+            var avatar = _httpContextAccessor?.HttpContext?.User.FindFirst("urn:google:image");
+
+            Avatar = avatar != null ? avatar.Value : string.Empty;           
+        }
+        catch { }
+    }
+} 
