@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace LearningPortal.BlazorServerApp.Pages.Identity
 {
@@ -29,7 +28,7 @@ namespace LearningPortal.BlazorServerApp.Pages.Identity
             // Get the information about the user from the external login provider
             var googleUser = User.Identities.FirstOrDefault();
 
-            if (googleUser?.IsAuthenticated?? false)
+            if (googleUser?.IsAuthenticated ?? false)
             {
                 var authProperties = new AuthenticationProperties
                 {
@@ -39,6 +38,8 @@ namespace LearningPortal.BlazorServerApp.Pages.Identity
              
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(googleUser), authProperties);
             }
+
+            //TODO: If no user exists in Users table then direct to Login Page - else direct to Home Page
 
             return LocalRedirect("/");
         }

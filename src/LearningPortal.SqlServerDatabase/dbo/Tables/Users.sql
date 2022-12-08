@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Users]
+(
+	[Id] INT NOT NULL PRIMARY KEY CLUSTERED IDENTITY (1, 1),
+	[IdentityIdentifier] NVARCHAR(MAX) NOT NULL,
+	[Guid] UniqueIdentifier NOT NULL UNIQUE DEFAULT NEWID(),
+	[PreferredName] NVARCHAR(160),
+	[CreatedAtDateTimeUTC] DateTime NOT NULL DEFAULT GETUTCDATE()
+)

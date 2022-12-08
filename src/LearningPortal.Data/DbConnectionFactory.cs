@@ -1,4 +1,5 @@
 ﻿using LearningPortal.Domain.Interfaces;
+using System.Data.SqlClient;
 
 namespace LearningPortal.Data
 {
@@ -10,7 +11,7 @@ namespace LearningPortal.Data
 
         public System.Data.IDbConnection NewConnection()
         {
-            var connection = new System.Data.SqlClient.SqlConnection(_sqlConfig.GetConfiguration());
+            var connection = new SqlConnection(_sqlConfig.GetConfiguration());
 
             connection.Open();
 
