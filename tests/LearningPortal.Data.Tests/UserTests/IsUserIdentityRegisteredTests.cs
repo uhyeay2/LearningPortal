@@ -6,7 +6,7 @@ namespace LearningPortal.Data.Tests.UserTests
     {
         [Fact]
         public async Task IsUserIdentityRegistered_Given_IdentityIsNotRegistered_Should_ReturnFalse() => 
-            Assert.False(await _data.FetchAsync<IsUserIdentityRegistered, bool>(new("NotRegistered")));
+            Assert.False(await _data.FetchAsync<bool>(new IsUserIdentityRegistered("NotRegistered")));
 
         [Fact]
         public async Task IsUserIdentityRegistered_Given_IdentityRegistered_Should_ReturnTrue()
@@ -15,7 +15,7 @@ namespace LearningPortal.Data.Tests.UserTests
 
             await _seeder.SeedUser(identityIdentifier: identity);
 
-            var isRegistered = await _data.FetchAsync<IsUserIdentityRegistered, bool>(new(identity));
+            var isRegistered = await _data.FetchAsync<bool>(new IsUserIdentityRegistered(identity));
 
             await _remover.RemoveUsers(where: $"IdentityIdentifier = '{identity}'");
 
