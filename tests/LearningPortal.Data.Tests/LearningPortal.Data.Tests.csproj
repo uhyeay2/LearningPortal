@@ -27,8 +27,4 @@
     <ProjectReference Include="..\..\src\LearningPortal.Data\LearningPortal.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="_DataTestingObjects\" />
-  </ItemGroup>
-
 </Project>

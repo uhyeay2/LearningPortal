@@ -1,4 +1,4 @@
-﻿namespace LearningPortal.Data.Tests
+﻿namespace LearningPortal.Data.Tests._DataTestingObjects
 {
     internal class DataSeeder : DataEnvironmentModifier
     {

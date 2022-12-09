@@ -32,6 +32,8 @@ namespace LearningPortal.Data.Tests.UserTests
             
             var countAfterSecondInsert = await _fetcher.Count("Users", $"IdentityIdentifier = '{identity}'");
 
+            await _remover.RemoveUsers(where: $"IdentityIdentifier = '{identity}'");
+
             Assert.Equal(countAfterFirstInsert, countAfterSecondInsert);
         }
 

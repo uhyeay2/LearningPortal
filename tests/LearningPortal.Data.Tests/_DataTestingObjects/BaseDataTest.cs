@@ -1,7 +1,7 @@
 ﻿using Moq;
 using LearningPortal.Domain.Interfaces;
 
-namespace LearningPortal.Data.Tests
+namespace LearningPortal.Data.Tests._DataTestingObjects
 {
     public abstract class BaseDataTest
     {

@@ -2,13 +2,30 @@
 {
     internal static class Update
     {
-        internal static string Set(string table, string where, params string[] items) => Set(table, where, items.Select(x => (x, x)).ToArray());
+        internal static string Set(string table, string where, params string[] items) => 
+            Set(table, where, items.Select(x => (x, $"@{x}")).ToArray());
 
         internal static string Set(string table, string where, params (string ColumnName, string ValueName)[] items) =>
             $"UPDATE {table} SET \n {items.Select(x => $"{x.ColumnName} = {x.ValueName}").AggregateWithCommaNewLine()} WHERE {where}";
 
-        internal static string Coalesce(string table, string where, params string[] items) => Coalesce(table, where, items.Select(x => (x, x)).ToArray());
+        /// <summary>
+        /// Returns generated UPDATE statement using all COALESCE updates. Do not include "WHERE" in the where variable. 
+        /// items are assumed to have matching ColumnName and ParameterName
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="where"></param>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        internal static string Coalesce(string table, string where, params string[] items) => 
+            Coalesce(table, where, items.Select(x => (x, $"@{x}")).ToArray());
 
+        /// <summary>
+        /// Returns generated UPDATE statement using all COALESCE updates. Do not include "WHERE" in the where variable.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="where"></param>
+        /// <param name="items"></param>
+        /// <returns></returns>
         internal static string Coalesce(string table, string where, params (string ColumnName, string ValueName)[] items) =>
             $"UPDATE {table} SET \n {items.Select(x => $"{x.ColumnName} = COALESCE({x.ValueName}, {x.ColumnName})").AggregateWithCommaNewLine()} WHERE {where}";
 

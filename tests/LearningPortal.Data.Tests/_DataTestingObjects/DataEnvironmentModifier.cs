@@ -1,6 +1,6 @@
 ﻿using LearningPortal.Data.Abstractions.BaseRequestObjects;
 
-namespace LearningPortal.Data.Tests
+namespace LearningPortal.Data.Tests._DataTestingObjects
 {
     internal abstract class DataEnvironmentModifier
     {

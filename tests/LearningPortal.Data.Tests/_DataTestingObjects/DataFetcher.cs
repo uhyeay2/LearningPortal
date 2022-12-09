@@ -1,10 +1,10 @@
-﻿namespace LearningPortal.Data.Tests
+﻿namespace LearningPortal.Data.Tests._DataTestingObjects
 {
     internal class DataFetcher : DataEnvironmentModifier
     {
         public DataFetcher(DataConnection data) : base(data) { }
 
-        public async Task<int> Count(string table, string where) => 
+        public async Task<int> Count(string table, string where) =>
             await _data.FetchAsync<int>(new InlineSqlRequest($"SELECT COUNT(*) FROM {table} WHERE {where} "));
 
         public async Task<bool> Exists(string table, string where) =>
