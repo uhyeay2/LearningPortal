@@ -44,7 +44,7 @@ else
             // Try to get Avatar
             var avatar = _httpContextAccessor?.HttpContext?.User.FindFirst("urn:google:image");
 
-            Avatar = avatar != null ? avatar.Value : string.Empty;           
+            Avatar = avatar != null ? avatar.Value : string.Empty;
         }
         catch { }
     }

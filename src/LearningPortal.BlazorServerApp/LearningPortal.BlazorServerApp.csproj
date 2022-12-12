@@ -5,10 +5,17 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>f0e1e6eb-1f38-4c46-954b-2739915fd61f</UserSecretsId>
+    <Configurations>Debug;Release;Dev</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LearningPortal.Data\LearningPortal.Data.csproj" />
+    <ProjectReference Include="..\LearningPortal.Mediator\LearningPortal.Mediator.csproj" />
   </ItemGroup>
 
 </Project>

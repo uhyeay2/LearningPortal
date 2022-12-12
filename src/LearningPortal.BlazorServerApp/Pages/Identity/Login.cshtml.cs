@@ -1,3 +1,5 @@
+using LearningPortal.Mediator.Mediators.UserMediators;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +12,10 @@ namespace LearningPortal.BlazorServerApp.Pages.Identity
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private readonly IMediator _mediator;
+
+        public LoginModel(IMediator mediator) => _mediator = mediator;
+
         public IActionResult OnGetAsync(string? returnUrl = null)
         {
             string provider = "Google";
@@ -35,11 +41,20 @@ namespace LearningPortal.BlazorServerApp.Pages.Identity
                     IsPersistent = true,
                     RedirectUri = Request.Host.Value                   
                 };
+
+                var identity = googleUser.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+
+                var isRegistered = await _mediator.Send(new IsUserIdentityRegisteredRequest(identity));
+
+                if(isRegistered.IsOK200StatusCode && isRegistered.ContentAs<bool>() == false)
+                {
+                    await _mediator.Send(new InsertUserRequest(identity));
+                    // TODO: After Inserting User, Direct User to page where we will collect their Preferred Name and confirm the name we receive from Identity
+                }
+                // TODO: Else if statusCode 200 && IsRegistered == true, go to user home page
              
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(googleUser), authProperties);
             }
-
-            //TODO: If no user exists in Users table then direct to Login Page - else direct to Home Page
 
             return LocalRedirect("/");
         }

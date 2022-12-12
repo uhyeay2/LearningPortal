@@ -5,7 +5,7 @@ namespace LearningPortal.Data
 {
     public class DbConnectionFactory : IDbConnectionFactory
     {
-        public DbConnectionFactory(IConfig sqlConfig) => _sqlConfig = sqlConfig;
+        public DbConnectionFactory(IDataConfig sqlConfig) => _sqlConfig = sqlConfig;
 
         private readonly IConfig _sqlConfig;
 

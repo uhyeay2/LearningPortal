@@ -17,7 +17,7 @@ namespace LearningPortal.Data.Tests._DataTestingObjects
 
         public BaseDataTest()
         {
-            var mockedIConfig = new Mock<IConfig>();
+            var mockedIConfig = new Mock<IDataConfig>();
 
             mockedIConfig.Setup(_ => _.GetConfiguration()).Returns(_testEnvConnectionString);
 
