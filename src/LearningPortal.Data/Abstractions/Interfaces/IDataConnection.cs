@@ -1,6 +1,6 @@
 ﻿namespace LearningPortal.Data.Abstractions.Interfaces
 {
-    internal interface IDataConnection
+    public interface IDataConnection
     {
         public Task<IEnumerable<TOutput>> FetchListAsync<TOutput>(IDataRequestObject request);
 

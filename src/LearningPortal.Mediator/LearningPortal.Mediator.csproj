@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LearningPortal.Domain\LearningPortal.Domain.csproj" />
     <ProjectReference Include="..\LearningPortal.Data\LearningPortal.Data.csproj" />
   </ItemGroup>
