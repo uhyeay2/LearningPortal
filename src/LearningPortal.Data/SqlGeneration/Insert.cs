@@ -15,10 +15,7 @@
 
         internal static string IfNotExistsCommand(string selectQueryToNotExist, string table, string columnNames, string valueNames) =>
             $"IF NOT EXISTS ( {selectQueryToNotExist} ) BEGIN {Command(table, columnNames, valueNames)} END ";
-
-        internal static string IfNotExistsSelectFromCommand(string selectQueryToNotExist, string table, string columnNames, string valueNames, string from, string where, string join = "") =>
-            $"IF NOT EXISTS ( {selectQueryToNotExist} ) BEGIN {SelectFromCommand(table, columnNames, valueNames, from, where, join)} END ";
-
+        
         #endregion
 
         internal static string ReflectionCommand<TRequest>()
