@@ -65,4 +65,7 @@
     <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Tables\UsersContactInfo.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="PublishLocations\LearningPortal.SqlServerDatabase.TestEnv.publish.xml" />
+  </ItemGroup>
 </Project>

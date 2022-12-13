@@ -12,6 +12,9 @@ namespace LearningPortal.Data.SqlGeneration
         public static string AggregateWithCommaNewLine(this IEnumerable<string> strings) =>
             strings?.Any() ?? false ? strings.Aggregate((a, b) => $"{a},\n {b}") : string.Empty;
 
+        public static string PrependAsParameters(this string str) => 
+            str.Split(',').Select(x => $"@{x.Trim()}").Aggregate((a, b) => $"{a}, {b}");
+
         /// <summary>
         /// Get the (PropertyName, Attribute) for all properties that contain the custom attribute TPropertyIdentifier from the Type provided.
         /// TPropertyIdentifier must be a SqlPropertyIdentifierAttribute.

@@ -2,11 +2,24 @@
 {
     internal static class Insert
     {
+        #region Non-Reflection SQL Generation
+
+        internal static string Command(string table, string consistentColumnAndParameterNames) =>
+            $"INSERT INTO {table} ( {consistentColumnAndParameterNames} ) VALUES ( {consistentColumnAndParameterNames.PrependAsParameters()} )";
+
         internal static string Command(string table, string columnNames, string valueNames) =>
             $"INSERT INTO {table} ( {columnNames} ) VALUES ( {valueNames} )";
 
         internal static string SelectFromCommand(string table, string columnNames, string valueNames, string from, string where, string join = "") =>
-            $"INSERT INTO {table} ({columnNames}) SELECT {valueNames} FROM {from} {join} {where} ";
+            $"INSERT INTO {table} ({columnNames}) SELECT {valueNames} FROM {from} {join} WHERE {where} ";
+
+        internal static string IfNotExistsCommand(string selectQueryToNotExist, string table, string columnNames, string valueNames) =>
+            $"IF NOT EXISTS ( {selectQueryToNotExist} ) BEGIN {Command(table, columnNames, valueNames)} END ";
+
+        internal static string IfNotExistsSelectFromCommand(string selectQueryToNotExist, string table, string columnNames, string valueNames, string from, string where, string join = "") =>
+            $"IF NOT EXISTS ( {selectQueryToNotExist} ) BEGIN {SelectFromCommand(table, columnNames, valueNames, from, where, join)} END ";
+
+        #endregion
 
         internal static string ReflectionCommand<TRequest>()
         {

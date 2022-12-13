@@ -17,7 +17,7 @@ namespace LearningPortal.Data.Tests.UserTests
 
             var isRegistered = await _data.FetchAsync<bool>(new IsUserIdentityRegistered(identity));
 
-            await _remover.RemoveUsers(where: $"IdentityIdentifier = '{identity}'");
+            await _remover.RemoveUserByIdentity(identity);
 
             Assert.True(isRegistered);
         }
