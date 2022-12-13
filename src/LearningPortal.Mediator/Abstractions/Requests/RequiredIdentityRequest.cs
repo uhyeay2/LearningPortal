@@ -1,4 +1,4 @@
-﻿using LearningPortal.Domain.Exceptions;
+﻿using LearningPortal.Domain.Models;
 using LearningPortal.Mediator.Constants;
 
 namespace LearningPortal.Mediator.Abstractions.Requests

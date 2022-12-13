@@ -1,4 +1,4 @@
-﻿using LearningPortal.Domain.Exceptions;
+﻿using LearningPortal.Domain.Models;
 
 namespace LearningPortal.Domain.Interfaces
 {

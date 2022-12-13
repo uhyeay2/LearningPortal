@@ -1,12 +1,10 @@
-﻿using LearningPortal.Domain.Exceptions;
-
-namespace LearningPortal.Mediator.Abstractions.Responses
+﻿namespace LearningPortal.Mediator.Abstractions.Responses
 {
     public static class Response
     {
         public static BaseResponse Success(object? content = null) => new(statusCode: 200, content);
 
-        public static BaseResponse ValidationFailed(List<ValidationFailedMessage> validationFailures) =>
+        public static BaseResponse ValidationFailed(List<Domain.Models.ValidationFailedMessage> validationFailures) =>
             new(statusCode: 400, validationFailures);
 
         public static BaseResponse NotFound(string nameOfObjectNotFound, string searchParameters) =>

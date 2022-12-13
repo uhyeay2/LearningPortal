@@ -1,4 +1,4 @@
-﻿namespace LearningPortal.Domain.Exceptions
+﻿namespace LearningPortal.Domain.Models
 {
     public class ValidationFailedMessage
     {

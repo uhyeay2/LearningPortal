@@ -22,6 +22,6 @@
             return (TContent)Content;
         }
 
-        public bool IsOK200StatusCode => StatusCode == 200;
+        public bool HasStatusCode200 => StatusCode == 200;
     }
 }

@@ -1,5 +1,5 @@
-﻿using LearningPortal.Domain.Exceptions;
-using LearningPortal.Domain.Interfaces;
+﻿using LearningPortal.Domain.Interfaces;
+using LearningPortal.Domain.Models;
 using LearningPortal.Mediator.Abstractions.Responses;
 
 namespace LearningPortal.Mediator.Abstractions.Requests
