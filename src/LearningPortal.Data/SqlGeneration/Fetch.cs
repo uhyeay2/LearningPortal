@@ -2,8 +2,8 @@
 {
     internal static class Fetch
     {
-        public static string Query(string table, string columns = "*", string where = "1 = 1") =>
-            $"SELECT {columns} FROM {table} WHERE {where}";
+        public static string Query(string table, string columns = "*", string where = "1 = 1", string joins = "") =>
+            $"SELECT {columns} FROM {table} {joins} WHERE {where}";
 
         /// <summary> Returns "SELECT CASE WHEN EXISTS(SELECT {column} FROM {table} WHERE {condition}) THEN 1 ELSE 0 END" </summary>
         public static string Exists(string table, string condition, string column = "*") =>
