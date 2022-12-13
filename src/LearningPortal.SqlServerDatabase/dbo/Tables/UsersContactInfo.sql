@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[UsersContactInfo]
+(
+	[Id] INT NOT NULL PRIMARY KEY CLUSTERED IDENTITY(1,1),
+	[UserId] INT NOT NULL REFERENCES [Users](Id),
+	[PreferredName] NVARCHAR(100) NULL, 
+	[FirstName] NVARCHAR(100) NOT NULL,
+	[LastName] NVARCHAR(100) NOT NULL,
+	[Email] NVARCHAR(MAX) NOT NULL
+)
