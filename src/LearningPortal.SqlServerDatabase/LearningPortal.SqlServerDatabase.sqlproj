@@ -67,5 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\LearningPortal.SqlServerDatabase.TestEnv.publish.xml" />
+    <None Include="PublishLocations\LearningPortal.SqlServerDatabase.DevEnv.publish.xml" />
   </ItemGroup>
 </Project>
