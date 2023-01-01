@@ -3,19 +3,15 @@ using LearningPortal.Domain.Models;
 
 namespace LearningPortal.Mediator.Abstractions.Requests
 {
-    public abstract class RequiredIdentityRequest : BaseValidatableRequest
+    public class RequiredGuidRequest : BaseValidatableRequest
     {
-        public RequiredIdentityRequest() { }
-
-        public RequiredIdentityRequest(string identity) => Identity = identity;
-
-        public string Identity { get; set; } = null!;
+        public Guid? Guid { get; set; }
 
         public override bool IsValid(out List<ValidationFailedMessage> validationFailures)
         {
             validationFailures = new List<ValidationFailedMessage>();
 
-            validationFailures.AddIfStringIsNullOrWhiteSpace(nameof(Identity), Identity);
+            validationFailures.AddIfGuidIsNullOrEmpty(nameof(Guid), Guid);
 
             return !validationFailures.Any();
         }

@@ -46,7 +46,7 @@ namespace LearningPortal.BlazorServerApp.Pages.Identity
 
                 var isRegistered = await _mediator.Send(new IsUserIdentityRegisteredRequest(identity));
 
-                if(isRegistered.HasStatusCode200 && isRegistered.ContentAs<bool>() == false)
+                if(isRegistered.IsSuccessResponse && isRegistered.ContentAs<bool>() == false)
                 {
                     await _mediator.Send(new InsertUserRequest(identity));
                     // TODO: After Inserting User, Direct User to page where we will collect their Preferred Name and confirm the name we receive from Identity

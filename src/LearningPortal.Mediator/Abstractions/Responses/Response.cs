@@ -14,5 +14,7 @@
             new(statusCode: 409, $"object ({nameOfObjectAlreadyExisting}) already exists with {conflictingItems}");
 
         public static BaseResponse Exception(Exception e) => new(statusCode: 500, content: e);
+
+        public static BaseResponse Unexpected(string details) => new(statusCode: 500, content: new Exception(details));
     }
 }

@@ -2,6 +2,7 @@
 using LearningPortal.Data.Abstractions.Interfaces;
 using LearningPortal.Domain.Interfaces;
 using LearningPortal.Mediator;
+using LearningPortal.Mediator.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -19,8 +20,8 @@ namespace LearningPortal.BlazorServerApp.Configurations
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             builder.Services.AddAuthentication().AddGoogle(options =>
             {
-                options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-                options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+                options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+                options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
                 options.Events.OnRedirectToAuthorizationEndpoint = context =>
                 {
                     context.Response.Redirect(context.RedirectUri + "&prompt=consent");
@@ -33,13 +34,7 @@ namespace LearningPortal.BlazorServerApp.Configurations
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<HttpClient>();
 
-            // Data Layer
-            builder.Services.AddSingleton<IDataConfig, LearningPortalDataConfig>();
-            builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
-            builder.Services.AddSingleton<IDataConnection, DataConnection>();
-
-            // Mediator
-            builder.Services.AddMediatR(typeof(MediatorEntryPoint).Assembly);
+            builder.Services.InjectMediator();
 
             return builder;
         }

@@ -1,8 +1,12 @@
 using LearningPortal.BlazorServerApp.Configurations;
 
-var app = WebApplication.CreateBuilder(args)
-                        .InjectServices()
-                        .Build();
+var builder = WebApplication.CreateBuilder(args);
+    
+builder.InjectServices();
+
+var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

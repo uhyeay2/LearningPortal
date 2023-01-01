@@ -27,7 +27,7 @@
 
         public object? GenerateParameters() => new { UserId, UserIdentity, UserGuid };
 
-        public string GenerateSql() => Fetch.Query(
+        public string GenerateSql() => Fetch.Query( 
             table: Table.UsersContactInfo_NoLock, 
             columns: $"{Table.UsersContactInfo}.*",
             where: "(   (Users.Id = @UserId AND @UserGuid IS NULL AND @UserIdentity IS NULL ) " +                   // fetch by @UserId

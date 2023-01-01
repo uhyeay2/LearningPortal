@@ -11,5 +11,5 @@
         public string SourceOfValidationFailure { get; set; }
 
         public string ValidationFailureMessage { get; set; }
-    }
+    }   
 }
